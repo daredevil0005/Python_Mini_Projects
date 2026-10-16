@@ -1,79 +1,62 @@
+
 '''
 Online Shopping Checkout
 '''
-#getting user input
+
+# Getting user input
 customer_name = input("Enter your name: ")
-purchase_amount = float(input("Enter the purchase amount:"))
+purchase_amount = float(input("Enter the purchase amount: "))
 customer_type = input("Enter customer type (regular/premium): ").lower()
-delivery_charge=100
 
+delivery_charge = 100
 
-#calculating discount based on purchase amount and customer type
-if purchase_amount > 0:
-
-    if purchase_amount >= 5000:
-        discount_amount = purchase_amount * 20/100
-
-    elif purchase_amount >= 3000 and purchase_amount < 5000:
-        discount_amount = purchase_amount * 10/100
-
-    elif purchase_amount >= 1000 and purchase_amount < 3000:
-        discount_amount = purchase_amount * 5/100 
-
-    elif purchase_amount < 1000:
-        discount_amount = 0
-
-else:
+# Validate purchase amount
+if purchase_amount <= 0:
     print("Invalid purchase amount.")
-    exit()
-
-
-#checking customer type 
-if customer_type == "premium":
-    final_discount_P = purchase_amount * 5/100 + discount_amount
 
 else:
-    final_discount_R = purchase_amount - discount_amount
+    # Calculate discount based on purchase amount
+    if purchase_amount >= 5000:
+        discount_amount = purchase_amount * 20 / 100
 
+    elif purchase_amount >= 3000:
+        discount_amount = purchase_amount * 10 / 100
 
-#calculating final bill
-if customer_type == "premium":
-    
-    if purchase_amount > 2000:
-
-        final_bill_P = purchase_amount - final_discount_P
+    elif purchase_amount >= 1000:
+        discount_amount = purchase_amount * 5 / 100
 
     else:
+        discount_amount = 0
 
-        final_bill_P = purchase_amount + delivery_charge - final_discount_P
+    # Validate customer type and calculate total discount
+    if customer_type == "premium":
+        premium_discount = purchase_amount * 5 / 100
+        total_discount = discount_amount + premium_discount
 
-else:
-        if purchase_amount > 2000:
+    elif customer_type == "regular":
+        total_discount = discount_amount
 
-            final_bill_R =  final_discount_R
-            
-        else:
-            
-            final_bill_R = final_discount_R + delivery_charge
+    else:
+        print("Invalid customer type.")
+        exit()
 
+    # Calculate amount after discounts
+    discounted_amount = purchase_amount - total_discount
 
-# Display Online Shopping bill
-print("\n===== ONLINE SHOPPING BILL =====")
-print("Customer Name:", customer_name)
+    # Calculate delivery charge
+    if discounted_amount >= 2000:
+        delivery_charge = 0
 
-if customer_type == "premium":
-    print("Discount Amount:",final_discount_P)
-else:
-    print("Discount Amount:",discount_amount)
+    # Calculate final bill
+    final_bill = discounted_amount + delivery_charge
 
-if purchase_amount > 2000:
-    print("Delivery Charge: 0")
-else:
-    print("Delivery Charge:",delivery_charge)
+    # Display online shopping bill
+    print("\n===== ONLINE SHOPPING BILL =====")
+    print("Customer Name:", customer_name)
+    print("Purchase Amount: ₹", purchase_amount)
+    print("Discount Amount: ₹", total_discount)
+    print("Delivery Charge: ₹", delivery_charge)
+    print("Final Bill: ₹", final_bill)
 
-if customer_type == "premium":
-    print("Final Bill:",final_bill_P)
-else:
-    print("Final Bill:",final_bill_R)
 
 
