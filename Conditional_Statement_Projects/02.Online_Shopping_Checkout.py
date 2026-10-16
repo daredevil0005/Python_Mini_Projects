@@ -9,10 +9,8 @@ delivery_charge=100
 
 
 #calculating discount based on purchase amount and customer type
-if purchase_amount < 0:
-    print("Invalid purchase amount. Please enter a positive value.")
+if purchase_amount > 0:
 
-else:
     if purchase_amount >= 5000:
         discount_amount = purchase_amount * 20/100
 
@@ -25,6 +23,10 @@ else:
     elif purchase_amount < 1000:
         discount_amount = 0
 
+else:
+    print("Invalid purchase amount.")
+    exit()
+
 
 #checking customer type 
 if customer_type == "premium":
@@ -32,6 +34,7 @@ if customer_type == "premium":
 
 else:
     final_discount_R = purchase_amount - discount_amount
+
 
 #calculating final bill
 if customer_type == "premium":
@@ -55,7 +58,7 @@ else:
 
 
 # Display Online Shopping bill
-print("\n===== ELECTRICITY BILL =====")
+print("\n===== ONLINE SHOPPING BILL =====")
 print("Customer Name:", customer_name)
 
 if customer_type == "premium":
