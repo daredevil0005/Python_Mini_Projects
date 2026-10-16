@@ -19,10 +19,10 @@ else:
     if purchase_amount >= 5000:
         discount_amount = purchase_amount * 20 / 100
 
-    elif purchase_amount >= 3000:
+    elif purchase_amount >= 3000 and purchase_amount < 5000:
         discount_amount = purchase_amount * 10 / 100
 
-    elif purchase_amount >= 1000:
+    elif purchase_amount >= 1000 and purchase_amount < 3000:
         discount_amount = purchase_amount * 5 / 100
 
     else:
