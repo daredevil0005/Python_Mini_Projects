@@ -1,4 +1,3 @@
-
 '''
 Student Scholarship Eligibility Checker
 '''
